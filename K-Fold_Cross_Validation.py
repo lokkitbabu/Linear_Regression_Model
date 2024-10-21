@@ -3,19 +3,18 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Step 1: Generate synthetic data
-np.random.seed(42)  # For reproducibility
-x = np.linspace(-1, 1, 100)  # 100 points in the interval [-1, 1]
-u = np.random.normal(0, 0.1, len(x))  # Noise term u ~ N(0, 0.1)
-y = np.sin(2 * np.pi * x) + u  # Generate y
+np.random.seed(42) 
+x = np.linspace(-1, 1, 100)
+u = np.random.normal(0, 0.1, len(x)) 
+y = np.sin(2 * np.pi * x) + u 
 
-# Step 2: Create polynomial feature matrix
+
 def create_polynomial_features(x, degree):
     """
     Creates a polynomial feature matrix for input array x up to the specified degree.
     """
     return np.vstack([x**i for i in range(degree + 1)]).T
 
-# Step 3: Manual k-fold cross-validation
 def k_fold_cross_validation(x, y, degree, k=5):
     """
     Perform k-fold cross-validation and return the mean squared error for the given polynomial degree.
